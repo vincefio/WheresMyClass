@@ -9,22 +9,93 @@
   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
   <link rel="stylesheet" type="type/css" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/cosmo/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="./style.css">
+  <!--Responsive Voice CDN-->
+  <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+
   <script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
+  <!--Bootstrap JS CDN-->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
   <script src="./script.js"></script>
 </head>
 <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a class="navbar-brand" href="#">Where's My Class</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-              </nav>
+            <a class="navbar-brand" href="#">Where's My Class</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        </nav>
 
-            </div>
+
+          <!--  <div class="jumbotron text-center">
+              <h1 class="display-3">Where's My Class</h1>
+              <p class="lead">We all know what it's like to finally want to go to class, only to forget the location.
+              Enter your class info below, then click "Next Class" to find where you need to go next!</p>
+              <hr class="my-4">
+              <p>Oh yea, if you want something to make you smile before you get going, click the button below</p>
+              <p class="lead">
+                <a class="btn btn-primary btn-lg" id="smileButton" href="#" role="button">Make Me Smile</a>
+              </p>
+              <div id="joke"></div>
+            </div>-->
+                <br>
+            <!--Modal Add Class Button-->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              Add Class
+            </button>
+
+            <p class="lead">
+              <br>
+              <a class="btn btn-primary btn-lg" id="smileButton" href="#" role="button">Make Me Smile</a>
+            </p>
+
+            <div id="joke"></div>
+          </div>
+
+
+
+          <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+
+                  <h4 class="modal-title">Modal title</h4>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                  <form>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Class Name:</label>
+                      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Class Name">
+
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Class Time:</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Class Time">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Day of Week</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Day of Week">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Class Address</label>
+                      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Class Address">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
+
             <div class="container body-container">
               <form>
                 <div class="form-group">
@@ -49,18 +120,7 @@
               </form>
 
             </div>
-  <script>
-    //chuck norris ajax request working
-    let queryURL = "https://api.chucknorris.io/jokes/random"
 
-    $.ajax({
-      url: queryURL,
-      method: 'GET'
-    }).done(function(response){
-      console.log(response.value)
-    })
-
-  </script>
 
 </body>
 </html>
