@@ -15,6 +15,12 @@ $(document).ready(function(){
     })
   })
 
+  $('#classModal').on('click', function(){
+    console.log('click works')
+    $('#myModal').modal()
+  })
+
+  
 
 
 })
