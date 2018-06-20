@@ -1,6 +1,22 @@
 //chuck norris ajax request working
 let queryURL = "https://api.chucknorris.io/jokes/random"
 
+//initialize firebase
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyBMCrH7br_SIkS-3tzjY7HIyM-uo9ZV3a0",
+  authDomain: "where-s-my-class.firebaseapp.com",
+  databaseURL: "https://where-s-my-class.firebaseio.com",
+  projectId: "where-s-my-class",
+  storageBucket: "",
+  messagingSenderId: "703520992210"
+};
+
+firebase.initializeApp(config);
+
+// Create a variable to reference the database.
+var database = firebase.database();
+
 $(document).ready(function(){
   $('#smileButton').on('click', function(event){
     event.preventDefault()
@@ -20,7 +36,36 @@ $(document).ready(function(){
     $('#myModal').modal()
   })
 
-  
+  /*$('#classSubmit').on('click', function(){
+    //alert('button works')
+    //create a class object
+
+    let newClass = {
+      name: $('#inputClass').val(),
+      time: $('#inputTime').val(),
+      day: $('#inputDay').val(),
+      address: $('#inputAddress').val()
+    }
+
+    // Code for handling the push
+    database.ref().push({
+      name: newClass.name,
+      time: newClass.time,
+      day: newClass.day ,
+      address: newClass.address
+    });
+
+    //firebase listener
+    database.ref().on("child_added", function(snapshot) {
+      // Log everything that's coming out of snapshot
+      //console.log(snapshot.val());
+
+      // Handle the errors
+    }, function(errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
+
+  })*/
 
 
 })
