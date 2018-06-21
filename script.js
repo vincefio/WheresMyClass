@@ -57,11 +57,24 @@ $(document).ready(function(){
 
       console.log(newClass)
       //classesArray.push(newClass)
+      //display new class in bootstrap panel
+      displayClass(newClass)
 
       //close the modal
       $('#myModal').modal()
   })
 
+  //function to add div with class informatin
+  function displayClass(classObject){
+    console.log('function hit ' + JSON.stringify(classObject))
+    let x = $('<div class="panel-body"></div>')
+    x.html(classObject.name)
+    let y = $('<div class="panel-heading"></div>')
+    y.append(x)
+
+    $('#classDiv').append(y)
+    //$('#classDiv')
+  }
 
 
   /*$('#classSubmit').on('click', function(){

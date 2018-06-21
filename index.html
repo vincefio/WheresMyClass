@@ -58,65 +58,72 @@
             </p>
 
             <div id="joke"></div>
+
+            <div class="body-container">
+              <div class="panel panel-primary" id="classDiv">
+
+              </div>
+
+            </div>
+
+            <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+
+                    <h4 class="modal-title">Modal title</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="form-group">
+                        <label for="exampleInputEmail1">Class Name:</label>
+                        <input class="form-control" id="inputClass" placeholder="Enter Class Name">
+
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Class Time:</label>
+                        <input class="form-control" id="inputTime" placeholder="Class Time">
+                      </div>
+                      <!--<div class="form-group">
+                        <label for="exampleInputPassword1">Day of Week</label>
+                        <input class="form-control" id="inputDay" placeholder="Enter Day of Week">
+                      </div>-->
+                      <div class="form-group">
+                        <label for="dayOfWeek">Day of Week</label>
+                        <select class="form-control" id="inputDay">
+                          <option>Monday</option>
+                          <option>Tuesday</option>
+                          <option>Wednesday</option>
+                          <option>Thursday</option>
+                          <option>Friday</option>
+                          <option>Saturday</option>
+                          <option>Sunday</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleInputPassword1">Class Address</label>
+                        <input class="form-control" id="inputAddress" placeholder="Enter Class Address">
+                      </div>
+
+                      <button id="classSubmit" data-dismiss="modal" type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                  </div>
+                <!--  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>-->
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+
           </div>
 
 
 
-          <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-
-                  <h4 class="modal-title">Modal title</h4>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                  <form>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Class Name:</label>
-                      <input class="form-control" id="inputClass" placeholder="Enter Class Name">
-
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Class Time:</label>
-                      <input class="form-control" id="inputTime" placeholder="Class Time">
-                    </div>
-                    <!--<div class="form-group">
-                      <label for="exampleInputPassword1">Day of Week</label>
-                      <input class="form-control" id="inputDay" placeholder="Enter Day of Week">
-                    </div>-->
-                    <div class="form-group">
-                      <label for="dayOfWeek">Day of Week</label>
-                      <select class="form-control" id="inputDay">
-                        <option>Monday</option>
-                        <option>Tuesday</option>
-                        <option>Wednesday</option>
-                        <option>Thursday</option>
-                        <option>Friday</option>
-                        <option>Saturday</option>
-                        <option>Sunday</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Class Address</label>
-                      <input class="form-control" id="inputAddress" placeholder="Enter Class Address">
-                    </div>
-
-                    <button id="classSubmit" data-dismiss="modal" type="submit" class="btn btn-primary">Submit</button>
-                  </form>
-                </div>
-              <!--  <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>-->
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
-
-            <div class="container body-container">
 
 
-            </div>
+
 
 
 </body>
