@@ -81,16 +81,28 @@
                       <label for="exampleInputPassword1">Class Time:</label>
                       <input class="form-control" id="inputTime" placeholder="Class Time">
                     </div>
-                    <div class="form-group">
+                    <!--<div class="form-group">
                       <label for="exampleInputPassword1">Day of Week</label>
                       <input class="form-control" id="inputDay" placeholder="Enter Day of Week">
+                    </div>-->
+                    <div class="form-group">
+                      <label for="dayOfWeek">Day of Week</label>
+                      <select class="form-control" id="inputDay">
+                        <option>Monday</option>
+                        <option>Tuesday</option>
+                        <option>Wednesday</option>
+                        <option>Thursday</option>
+                        <option>Friday</option>
+                        <option>Saturday</option>
+                        <option>Sunday</option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Class Address</label>
                       <input class="form-control" id="inputAddress" placeholder="Enter Class Address">
                     </div>
 
-                    <button id="classSubmit" type="submit" class="btn btn-primary">Submit</button>
+                    <button id="classSubmit" data-dismiss="modal" type="submit" class="btn btn-primary">Submit</button>
                   </form>
                 </div>
               <!--  <div class="modal-footer">

@@ -17,6 +17,18 @@ firebase.initializeApp(config);
 // Create a variable to reference the database.
 var database = firebase.database();
 
+//create a constructor for a class
+function Class(name, time, day, address){
+  this.name = name;
+  this.time = time;
+  this.day = day;
+  this.address = address;
+}
+
+//create an array for all of the classes
+let classesArray = []
+let newClass
+
 $(document).ready(function(){
   $('#smileButton').on('click', function(event){
     event.preventDefault()
@@ -29,12 +41,28 @@ $(document).ready(function(){
       responsiveVoice.speak(response.value)
       $('#joke').html(response.value)
     })
+
   })
 
   $('#classModal').on('click', function(){
     console.log('click works')
     $('#myModal').modal()
   })
+
+  $('#classSubmit').on('click', function(){
+    //create new class object
+    //let newName = $('#inputClass').val()
+    newClass = new Class($('#inputClass').val(), $('#inputTime').val(),
+      $('#inputDay').val(), $('#inputAddress').val())
+
+      console.log(newClass)
+      //classesArray.push(newClass)
+
+      //close the modal
+      $('#myModal').modal()
+  })
+
+
 
   /*$('#classSubmit').on('click', function(){
     //alert('button works')
