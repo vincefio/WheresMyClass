@@ -20,3 +20,7 @@ form{
 .modal-open {
 padding-right: 0px !important;
 }
+
+#amPM{
+  width: 25%;
+}
