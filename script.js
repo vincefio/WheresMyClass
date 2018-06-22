@@ -86,11 +86,14 @@ $(document).ready(function(){
 
   //function to calculate the number of minutes between now and next class
   function nowThenMinutes(){
-
-    console.log()
+    let year = moment().format('YY')
+    let month = moment().format('MM')
+    let day = moment().format('DD')
+    let dateString = (month + '/' + day + '/' + year)
+  //  console.log(year + month + day)
     let x = moment().format('MMM Do YY')
     //let y = moment().diff().fromNow().format('m')
-    let y = moment().diff(moment('06/21/2018 23:00:00'), 'minutes')
+    let y = moment().diff(moment(dateString + ' 23:00:00'), 'minutes')
     //let y = moment(x, '23:00:00').diff(moment()).format('m')
     console.log('y is ' + y)
 
