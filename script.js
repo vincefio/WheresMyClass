@@ -17,6 +17,7 @@ firebase.initializeApp(config);
 // Create a variable to reference the database.
 var database = firebase.database();
 */
+
 //create a constructor for a class
 function Class(name, time, day, address){
   this.name = name;
@@ -30,8 +31,17 @@ let classesArray = []
 let newClass
 
 let storageArray = []
+var oldItems = JSON.parse(localStorage.getItem('classList')) || []
 
 $(document).ready(function(){
+  let x = $('<div class="panel-body"></div>')
+
+  let y = $('<div class="panel-heading"></div>')
+    //loop through oldItems and display a bootstrap panel w class Name
+    for(let i = 0; i < oldItems.length; i++){
+      $('#classDiv').append(oldItems[i].name + '<br>')
+      x.html((oldItems[i].name))
+    }
 //  console.log(nowThenMinutes())
 
   $('#smileButton').on('click', function(event){
@@ -63,13 +73,15 @@ $(document).ready(function(){
     newClass = new Class($('#inputClass').val(), $('#inputTime').val(),
       $('#inputDay').val(), $('#inputAddress').val())
 
-    //newClass.minutes = minutesTo
+    newClass.minutes = minutesTo
 
       //console.log(newClass)
       //classesArray.push(newClass)
       //display new class in bootstrap panel
 
     displayClass(newClass)
+
+    loopThroughLocal()
 
     //erase all previous values from form
     $('#inputClass').val('')
@@ -81,8 +93,15 @@ $(document).ready(function(){
       //close the modal
       $('#myModal').modal()
 
-    findClass(newClass)
+    //findClass(newClass)
   })
+
+  function loopThroughLocal(){
+    for(let i = 0; i < oldItems.length; i++){
+      console.log('old items ' + JSON.stringify(oldItems[i]))
+    //  console.log('typeof ' + typeof oldItems)
+    }
+  }
 
   //function to add div with class informatin
   function displayClass(classObject){
@@ -90,20 +109,33 @@ $(document).ready(function(){
   //first push the classObject into an classArray
 //  storageArray.push(classObject)
   //localStorage.setItem('classList', JSON.stringify(storageArray))
-  var oldItems = JSON.parse(localStorage.getItem('classList'))
-  console.log(typeof oldItems)
+
+  //console.log(typeof oldItems)
   oldItems.push(classObject)
   console.log('old items ' + JSON.stringify(oldItems))
   localStorage.setItem('classList', JSON.stringify(oldItems))
 
   //console.log('old Items ' + JSON.stringify(oldItems))
+  //console.log(oldItems.length)
+  let x = $('<div class="panel-body"></div>')
 
-    let x = $('<div class="panel-body"></div>')
-    x.html(classObject.name)
-    let y = $('<div class="panel-heading"></div>')
-    y.append(x)
+  let y = $('<div class="panel-heading"></div>')
 
-    $('#classDiv').append(y)
+  $('#classDiv').empty()
+    //loop through oldItems and display a bootstrap panel w class Name
+    for(let i = 0; i < oldItems.length; i++){
+      $('#classDiv').append(oldItems[i].name + '<br>')
+      x.html((oldItems[i].name))
+      //console.log(oldItems[i].name)
+      //x.html(oldItems[i].name)
+    //  console.log('x ' + x)
+      //y.append(x)
+
+
+    }
+
+
+
     //$('#classDiv')
   }
 
