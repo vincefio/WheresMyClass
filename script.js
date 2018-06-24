@@ -3,7 +3,7 @@ let queryURL = "https://api.chucknorris.io/jokes/random"
 
 //initialize firebase
 // Initialize Firebase
-var config = {
+/*var config = {
   apiKey: "AIzaSyBMCrH7br_SIkS-3tzjY7HIyM-uo9ZV3a0",
   authDomain: "where-s-my-class.firebaseapp.com",
   databaseURL: "https://where-s-my-class.firebaseio.com",
@@ -16,7 +16,7 @@ firebase.initializeApp(config);
 
 // Create a variable to reference the database.
 var database = firebase.database();
-
+*/
 //create a constructor for a class
 function Class(name, time, day, address){
   this.name = name;
@@ -58,9 +58,12 @@ $(document).ready(function(){
     let classDate = $('#inputTime').val()
     console.log('class date ' + classDate)
     console.log(nowThenMinutes(classDate))
+    let minutesTo = nowThenMinutes(classDate)
 
     newClass = new Class($('#inputClass').val(), $('#inputTime').val(),
       $('#inputDay').val(), $('#inputAddress').val())
+
+    //newClass.minutes = minutesTo
 
       //console.log(newClass)
       //classesArray.push(newClass)
@@ -78,12 +81,19 @@ $(document).ready(function(){
       //close the modal
       $('#myModal').modal()
 
-      findClass(newClass)
+    findClass(newClass)
   })
 
   //function to add div with class informatin
   function displayClass(classObject){
   //console.log('function hit ' + JSON.stringify(classObject.name))
+  //first push the classObject into an classArray
+  storageArray.push(classObject)
+  localStorage.setItem('classList', JSON.stringify(storageArray))
+  var oldItems = JSON.parse(localStorage.getItem('classList'))
+  //oldItems.push(classObject)
+  console.log('old Items ' + JSON.stringify(oldItems))
+
     let x = $('<div class="panel-body"></div>')
     x.html(classObject.name)
     let y = $('<div class="panel-heading"></div>')
@@ -115,11 +125,13 @@ $(document).ready(function(){
   function findClass(addedClass){
   //  storageArray = JSON.parse(localStorage.getItem())
     //storageArray = localStorage.getItem('classArray')
-    storageArray.push(addedClass)
-    console.log(storageArray)
+    //let oldClass = JSON.parse(localStorage.getItem('classList'))
+    //oldClass.push(addedClass)
+    //storageArray.push(addedClass)
+    //console.log(oldClass)
     //add storageArray to localStorage
     //let classList = JSON.parse(localStorage.getItem('classList'))
-    localStorage.setItem('classList', JSON.stringify(storageArray))
+  //  localStorage.setItem('classList', JSON.stringify(oldClass))
   }
 
 
