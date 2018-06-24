@@ -35,6 +35,8 @@ var oldItems = JSON.parse(localStorage.getItem('classList')) || []
 
 let smallestInt = []
 let smallIntObj = []
+let nearestClass
+//let indexNumber = 0
 
 
 $(document).ready(function(){
@@ -63,14 +65,14 @@ $(document).ready(function(){
   })
 
   $('#classModal').on('click', function(){
-    console.log('click works')
+  //  console.log('click works')
     $('#myModal').modal()
   })
 
   $('#classSubmit').on('click', function(){
     //grab user input date
     let classDate = $('#inputTime').val()
-    console.log('class date ' + classDate)
+  //  console.log('class date ' + classDate)
     console.log(nowThenMinutes(classDate))
     let minutesTo = nowThenMinutes(classDate)
 
@@ -104,33 +106,48 @@ $(document).ready(function(){
     //places all negative numbers in smallIntObj
     smallestInt = []
     for(let i = 0; i < oldItems.length; i++){
-      smallIntObj.push(oldItems[i].minutes)
+
     //  console.log('old items ' + JSON.stringify(oldItems[i].minutes))
     //  console.log('typeof ' + typeof oldItems)
     if(Math.sign(oldItems[i].minutes) == -1){
-  //    console.log('negative, time has not come yet')
-    //  let smallIntObj = [i, oldItems[i].minutes]
       smallestInt.push(oldItems[i].minutes)
+    }
+    else{
+      smallestInt.push(-10000)
+
+    }
+/*    if(Math.sign(oldItems[i].minutes) == -1){
+    console.log('negative, time has not come yet')
+    //  let smallIntObj = [i, oldItems[i].minutes]
+    smallIntObj.push(oldItems[i].minutes)
+
     //  smallIntObj.push({i: oldItems[i].minutes})
 
 
     }else if (Math.sign(oldItems[i].minutes) == 1){
-//      console.log('positive')
+     console.log('positive')
     }else{
       console.log('0')
-    }
+    }*/
     }
 
     //console.log('smallestInt ' + JSON.stringify(oldItems))
     console.log(smallestInt)
     //console.log(JSON.stringify(oldItems))
     console.log(oldItems)
-    console.log(smallIntObj.indexOf(Math.max(...smallestInt)))
-    let indexOfSmallInt = smallIntObj.indexOf(Math.max(...smallestInt))
+  //  console.log(smallIntObj.indexOf(Math.max(...smallestInt)))
+    //let indexOfSmallInt = smallIntObj.indexOf(Math.max(...smallestInt))
+    let smallIntIndex = smallestInt.indexOf(Math.max(...smallestInt))
   //  console.log('indexOfSmallInt ' + smallIntObj.indexOf(Math.max(...smallestInt)))
-    let nearestClass = oldItems[indexOfSmallInt].name
-    console.log('nearest class is ' + nearestClass)
-    console.log(Math.max(...smallestInt) )
+    //console.log('indexOfSmallInt ' + indexOfSmallInt)
+    console.log('smallIntIndex ' + smallIntIndex)
+    if(smallIntIndex != -1){
+      //let nearestClass = oldItems[indexOfSmallInt].name
+      nearestClass = oldItems[smallIntIndex].name
+      console.log('nearest class is ' + nearestClass)
+    //  console.log(Math.max(...smallestInt) )
+    }
+
     //find smallest int in smallestInt array
 
   }
@@ -155,6 +172,7 @@ $(document).ready(function(){
 
   $('#classDiv').empty()
     //loop through oldItems and display a bootstrap panel w class Name
+    console.log('old items ' + oldItems)
     for(let i = 0; i < oldItems.length; i++){
       $('#classDiv').append(oldItems[i].name + '<br>')
       x.html((oldItems[i].name))
