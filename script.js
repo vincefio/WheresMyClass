@@ -29,8 +29,10 @@ function Class(name, time, day, address){
 let classesArray = []
 let newClass
 
+let storageArray = []
+
 $(document).ready(function(){
-  nowThenMinutes()
+//  console.log(nowThenMinutes())
 
   $('#smileButton').on('click', function(event){
     event.preventDefault()
@@ -52,7 +54,19 @@ $(document).ready(function(){
   })
 
   $('#classSubmit').on('click', function(){
-    //create new class object
+    //grab user input date
+    let classDate = $('#inputTime').val()
+    console.log('class date ' + classDate)
+    console.log(nowThenMinutes(classDate))
+
+    newClass = new Class($('#inputClass').val(), $('#inputTime').val(),
+      $('#inputDay').val(), $('#inputAddress').val())
+
+      //console.log(newClass)
+      //classesArray.push(newClass)
+      //display new class in bootstrap panel
+
+    displayClass(newClass)
 
     //erase all previous values from form
     $('#inputClass').val('')
@@ -60,21 +74,16 @@ $(document).ready(function(){
     $('#inputDay').val(''),
     $('#inputAddress').val('')
     //let newName = $('#inputClass').val()
-    newClass = new Class($('#inputClass').val(), $('#inputTime').val(),
-      $('#inputDay').val(), $('#inputAddress').val())
-
-      console.log(newClass)
-      //classesArray.push(newClass)
-      //display new class in bootstrap panel
-      displayClass(newClass)
 
       //close the modal
       $('#myModal').modal()
+
+      findClass(newClass)
   })
 
   //function to add div with class informatin
   function displayClass(classObject){
-    console.log('function hit ' + JSON.stringify(classObject))
+  //console.log('function hit ' + JSON.stringify(classObject.name))
     let x = $('<div class="panel-body"></div>')
     x.html(classObject.name)
     let y = $('<div class="panel-heading"></div>')
@@ -85,18 +94,32 @@ $(document).ready(function(){
   }
 
   //function to calculate the number of minutes between now and next class
-  function nowThenMinutes(){
+  function nowThenMinutes(z){
+    //code below formats todays date
     let year = moment().format('YY')
     let month = moment().format('MM')
     let day = moment().format('DD')
     let dateString = (month + '/' + day + '/' + year)
+
+
   //  console.log(year + month + day)
     let x = moment().format('MMM Do YY')
     //let y = moment().diff().fromNow().format('m')
-    let y = moment().diff(moment(dateString + ' 23:00:00'), 'minutes')
+    let y = moment().diff(moment(dateString + ' ' + z), 'minutes')
     //let y = moment(x, '23:00:00').diff(moment()).format('m')
-    console.log('y is ' + y)
+  //  console.log('y is ' + y)
+    return y
+  }
 
+  //make a function that gets localStorage array to loop through
+  function findClass(addedClass){
+  //  storageArray = JSON.parse(localStorage.getItem())
+    //storageArray = localStorage.getItem('classArray')
+    storageArray.push(addedClass)
+    console.log(storageArray)
+    //add storageArray to localStorage
+    //let classList = JSON.parse(localStorage.getItem('classList'))
+    localStorage.setItem('classList', JSON.stringify(storageArray))
   }
 
 
