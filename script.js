@@ -33,6 +33,8 @@ let newClass
 let storageArray = []
 var oldItems = JSON.parse(localStorage.getItem('classList')) || []
 
+let smallestInt = []
+
 $(document).ready(function(){
   let x = $('<div class="panel-body"></div>')
 
@@ -97,10 +99,29 @@ $(document).ready(function(){
   })
 
   function loopThroughLocal(){
+    //places all negative numbers in smallIntObj
+    smallestInt = []
     for(let i = 0; i < oldItems.length; i++){
-      console.log('old items ' + JSON.stringify(oldItems[i]))
+      console.log('old items ' + JSON.stringify(oldItems[i].minutes))
     //  console.log('typeof ' + typeof oldItems)
+    if(Math.sign(oldItems[i].minutes) == -1){
+      console.log('negative, time has not come yet')
+    //  let smallIntObj = [i, oldItems[i].minutes]
+      smallestInt.push(oldItems[i].minutes)
+      //
+
+    }else if (Math.sign(oldItems[i].minutes) == 1){
+      console.log('positive')
+    }else{
+      console.log('0')
     }
+    }
+
+    //console.log('smallestInt ' + JSON.stringify(oldItems))
+    console.log(smallestInt)
+    console.log(Math.max(...smallestInt) )
+    //find smallest int in smallestInt array
+
   }
 
   //function to add div with class informatin
@@ -112,7 +133,7 @@ $(document).ready(function(){
 
   //console.log(typeof oldItems)
   oldItems.push(classObject)
-  console.log('old items ' + JSON.stringify(oldItems))
+//  console.log('old items ' + JSON.stringify(oldItems))
   localStorage.setItem('classList', JSON.stringify(oldItems))
 
   //console.log('old Items ' + JSON.stringify(oldItems))
