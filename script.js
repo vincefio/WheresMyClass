@@ -1,22 +1,6 @@
 //chuck norris ajax request working
 let queryURL = "https://api.chucknorris.io/jokes/random"
 
-//initialize firebase
-// Initialize Firebase
-/*var config = {
-  apiKey: "AIzaSyBMCrH7br_SIkS-3tzjY7HIyM-uo9ZV3a0",
-  authDomain: "where-s-my-class.firebaseapp.com",
-  databaseURL: "https://where-s-my-class.firebaseio.com",
-  projectId: "where-s-my-class",
-  storageBucket: "",
-  messagingSenderId: "703520992210"
-};
-
-firebase.initializeApp(config);
-
-// Create a variable to reference the database.
-var database = firebase.database();
-*/
 
 //create a constructor for a class
 function Class(name, time, day, address){
@@ -36,6 +20,7 @@ var oldItems = JSON.parse(localStorage.getItem('classList')) || []
 let smallestInt = []
 let smallIntObj = []
 let nearestClass
+let nearestClassTime
 //let indexNumber = 0
 
 
@@ -62,6 +47,14 @@ $(document).ready(function(){
       $('#joke').html(response.value)
     })
 
+  })
+
+  $('#nextClassButton').on('click', function(){
+    console.log('next class button')
+    loopThroughLocal()
+    let x = $('<h3>')
+    x.html('Youre next class is ' + nearestClass + ' at ' + nearestClassTime)
+    $('#nextClassDiv').append(x)
   })
 
   $('#classModal').on('click', function(){
@@ -144,6 +137,7 @@ $(document).ready(function(){
     if(smallIntIndex != -1){
       //let nearestClass = oldItems[indexOfSmallInt].name
       nearestClass = oldItems[smallIntIndex].name
+      nearestClassTime = oldItems[smallIntIndex].time
       console.log('nearest class is ' + nearestClass)
     //  console.log(Math.max(...smallestInt) )
     }
@@ -180,12 +174,7 @@ $(document).ready(function(){
       //x.html(oldItems[i].name)
     //  console.log('x ' + x)
       //y.append(x)
-
-
     }
-
-
-
     //$('#classDiv')
   }
 
@@ -219,38 +208,5 @@ $(document).ready(function(){
     //let classList = JSON.parse(localStorage.getItem('classList'))
   //  localStorage.setItem('classList', JSON.stringify(oldClass))
   }
-
-
-  /*$('#classSubmit').on('click', function(){
-    //alert('button works')
-    //create a class object
-
-    let newClass = {
-      name: $('#inputClass').val(),
-      time: $('#inputTime').val(),
-      day: $('#inputDay').val(),
-      address: $('#inputAddress').val()
-    }
-
-    // Code for handling the push
-    database.ref().push({
-      name: newClass.name,
-      time: newClass.time,
-      day: newClass.day ,
-      address: newClass.address
-    });
-
-    //firebase listener
-    database.ref().on("child_added", function(snapshot) {
-      // Log everything that's coming out of snapshot
-      //console.log(snapshot.val());
-
-      // Handle the errors
-    }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
-    });
-
-  })*/
-
 
 })
