@@ -88,11 +88,15 @@ $(document).ready(function(){
   function displayClass(classObject){
   //console.log('function hit ' + JSON.stringify(classObject.name))
   //first push the classObject into an classArray
-  storageArray.push(classObject)
-  localStorage.setItem('classList', JSON.stringify(storageArray))
+//  storageArray.push(classObject)
+  //localStorage.setItem('classList', JSON.stringify(storageArray))
   var oldItems = JSON.parse(localStorage.getItem('classList'))
-  //oldItems.push(classObject)
-  console.log('old Items ' + JSON.stringify(oldItems))
+  console.log(typeof oldItems)
+  oldItems.push(classObject)
+  console.log('old items ' + JSON.stringify(oldItems))
+  localStorage.setItem('classList', JSON.stringify(oldItems))
+
+  //console.log('old Items ' + JSON.stringify(oldItems))
 
     let x = $('<div class="panel-body"></div>')
     x.html(classObject.name)
