@@ -21,6 +21,9 @@ let smallestInt = []
 let smallIntObj = []
 let nearestClass
 let nearestClassTime
+
+let classDate
+let minutesTo
 //let indexNumber = 0
 
 
@@ -54,7 +57,13 @@ $(document).ready(function(){
     loopThroughLocal()
     let x = $('<h3>')
     x.html('Youre next class is ' + nearestClass + ' at ' + nearestClassTime)
-    $('#nextClassDiv').append(x)
+
+    let y = $('<h4>')
+    y.html('Would You Like Directions to Class?')
+
+    let z = $('<button type="button" class="btn btn-success answerButton" id="yesButton">Yes</button>')
+    let a = $('<button type="button" class="btn btn-danger answerButton" id="noButton">No</button>')
+    $('#nextClassDiv').append(x).append(y).append(z).append(a)
   })
 
   $('#classModal').on('click', function(){
@@ -62,12 +71,23 @@ $(document).ready(function(){
     $('#myModal').modal()
   })
 
+  //my api key:
+  //AIzaSyCvMR70NsNiSJtm-UGdnZQ0p5Ryl8mu2Zw 	 
+  $(document).on('click', '#yesButton', function(){
+    console.log('yes works')
+  })
+
+  $(document).on('click', '#noButton', function(){
+    console.log('no works')
+    $('#nextClassDiv').empty()
+  })
+
   $('#classSubmit').on('click', function(){
     //grab user input date
-    let classDate = $('#inputTime').val()
+    classDate = $('#inputTime').val()
   //  console.log('class date ' + classDate)
     console.log(nowThenMinutes(classDate))
-    let minutesTo = nowThenMinutes(classDate)
+    minutesTo = nowThenMinutes(classDate)
 
     newClass = new Class($('#inputClass').val(), $('#inputTime').val(),
       $('#inputDay').val(), $('#inputAddress').val())
