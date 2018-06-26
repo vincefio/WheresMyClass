@@ -26,6 +26,17 @@ let classDate
 let minutesTo
 //let indexNumber = 0
 
+//google maps stuff
+let map;
+  function initMap() {
+    var directionsService = new google.maps.DirectionsService();
+    console.log(directionsService)
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: -34.397, lng: 150.644},
+      zoom: 8
+    });
+  }
+
 
 $(document).ready(function(){
   let x = $('<div class="panel-body"></div>')
@@ -72,9 +83,10 @@ $(document).ready(function(){
   })
 
   //my api key:
-  //AIzaSyCvMR70NsNiSJtm-UGdnZQ0p5Ryl8mu2Zw 	 
+  //AIzaSyCvMR70NsNiSJtm-UGdnZQ0p5Ryl8mu2Zw
   $(document).on('click', '#yesButton', function(){
     console.log('yes works')
+
   })
 
   $(document).on('click', '#noButton', function(){
