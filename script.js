@@ -36,21 +36,69 @@ let minutesTo
       zoom: 8
     });
   }*/
+/*  var map, infoWindow;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 6
+        });
+
+      }*/
+
+      /*function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+                              'Error: The Geolocation service failed.' :
+                              'Error: Your browser doesn\'t support geolocation.');
+        infoWindow.open(map);
+      }*/
   var directionsService
   var directionsDisplay
   function initMap() {
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
+
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
     zoom:7,
     center: chicago
   }
+infoWindow = new google.maps.InfoWindow;
+
+
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
   directionsDisplay.setMap(map);
 }
+function getLat(){
+
+}
 
 function calcRoute() {
+  // Try HTML5 geolocation.
+  var pos
+  let latitude
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+      console.log(pos.lat)
+      latitude = pos.lat
+    /*  infoWindow.setPosition(pos);
+      infoWindow.setContent('Location found.');
+      infoWindow.open(map);
+      map.setCenter(pos);*/
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    // Browser doesn't support Geolocation
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+  console.log('lat is '+ latitude)
+  var myLatLng = new google.maps.LatLng({lat: -34, lng: 151});
+  console.log('latlng ' + myLatLng)
   var start = document.getElementById('start').value;
   var end = document.getElementById('end').value;
   var request = {
