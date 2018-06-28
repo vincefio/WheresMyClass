@@ -25,6 +25,70 @@ let nearestClassTime
 let classDate
 let minutesTo
 //let indexNumber = 0
+let directionsService
+let directionsDisplay
+
+function initMap() {
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var mapOptions = {
+    zoom:7,
+    center: chicago
+  }
+  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  directionsDisplay.setMap(map);
+}
+//infoWindow = new google.maps.InfoWindow;
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+  //  x.innerHTML = "Latitude: " + position.coords.latitude +
+    //"<br>Longitude: " + position.coords.longitude;
+  //  console.log(position.coords)
+  return(position.coords)
+}
+let zig = getLocation()
+console.log('zig ' + zig)
+
+let pos = {}
+function calcRoute() {
+  if (navigator.geolocation) {
+    //console.log('navigation works')
+   navigator.geolocation.getCurrentPosition(function(position) {
+     var pos = {
+       lat: position.coords.latitude,
+       lng: position.coords.longitude
+     };
+     console.log(request)
+    /* infoWindow.setPosition(pos);
+     infoWindow.setContent('Location found.');
+     infoWindow.open(map);
+     map.setCenter(pos);*/
+   }, function() {
+     handleLocationError(true, infoWindow, map.getCenter());
+   });
+ }
+  var start = document.getElementById('start').value;
+  var end = document.getElementById('end').value;
+  var request = {
+    origin: start,
+    destination: end,
+    travelMode: 'DRIVING'
+  };
+  console.log(pos)
+  directionsService.route(request, function(result, status) {
+    if (status == 'OK') {
+      directionsDisplay.setDirections(result);
+    }
+  });
+}
 
 //google maps stuff
 /*let map;
@@ -52,13 +116,13 @@ let minutesTo
                               'Error: Your browser doesn\'t support geolocation.');
         infoWindow.open(map);
       }*/
-  var directionsService
+  /*var directionsService
   var directionsDisplay
   function initMap() {
   directionsService = new google.maps.DirectionsService();
   directionsDisplay = new google.maps.DirectionsRenderer();
 
-  var chicago = new google.maps.LatLng(41.850033, -87.6500523);
+  var chicago = new google.maps.LatLng(41.850033, -87.650052);
   var mapOptions = {
     zoom:7,
     center: chicago
@@ -68,12 +132,12 @@ infoWindow = new google.maps.InfoWindow;
 
   var map = new google.maps.Map(document.getElementById('map'), mapOptions);
   directionsDisplay.setMap(map);
-}
+}*/
 function getLat(){
 
 }
 
-function calcRoute() {
+/*function calcRoute() {
   // Try HTML5 geolocation.
   var pos
   let latitude
@@ -89,7 +153,7 @@ function calcRoute() {
       infoWindow.setContent('Location found.');
       infoWindow.open(map);
       map.setCenter(pos);*/
-    }, function() {
+    /*}, function() {
       handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {
@@ -111,7 +175,7 @@ function calcRoute() {
       directionsDisplay.setDirections(result);
     }
   });
-}
+}*/
 
 $(document).ready(function(){
 
@@ -140,6 +204,7 @@ $(document).ready(function(){
   })
 
   $('#nextClassButton').on('click', function(){
+    calcRoute()
     console.log('next class button')
     loopThroughLocal()
     let x = $('<h3>')
@@ -171,6 +236,7 @@ $(document).ready(function(){
   })
 
   $('#classSubmit').on('click', function(){
+
     //grab user input date
     classDate = $('#inputTime').val()
   //  console.log('class date ' + classDate)
