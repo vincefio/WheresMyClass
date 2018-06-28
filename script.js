@@ -30,15 +30,17 @@ let minutesTo
 /*let map;
   function initMap() {
     var directionsService = new google.maps.DirectionsService();
-    console.log(directionsService)
+    console.log
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: -34.397, lng: 150.644},
       zoom: 8
     });
   }*/
+  var directionsService
+  var directionsDisplay
   function initMap() {
-  var directionsService = new google.maps.DirectionsService();
-  var directionsDisplay = new google.maps.DirectionsRenderer();
+  directionsService = new google.maps.DirectionsService();
+  directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
     zoom:7,
@@ -63,8 +65,8 @@ function calcRoute() {
   });
 }
 
-
 $(document).ready(function(){
+
   let x = $('<div class="panel-body"></div>')
 
   let y = $('<div class="panel-heading"></div>')
