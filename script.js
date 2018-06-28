@@ -40,41 +40,29 @@ function initMap() {
   directionsDisplay.setMap(map);
 }
 //infoWindow = new google.maps.InfoWindow;
-var x = document.getElementById("demo");
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-function showPosition(position) {
-  //  x.innerHTML = "Latitude: " + position.coords.latitude +
-    //"<br>Longitude: " + position.coords.longitude;
-  //  console.log(position.coords)
-  return(position.coords)
-}
-let zig = getLocation()
-console.log('zig ' + zig)
+
+
+//let zig = getLocation()
+//console.log('zig ' + zig)
 
 let pos = {}
 function calcRoute() {
-  if (navigator.geolocation) {
+  /*if (navigator.geolocation) {
     //console.log('navigation works')
    navigator.geolocation.getCurrentPosition(function(position) {
      var pos = {
        lat: position.coords.latitude,
        lng: position.coords.longitude
      };
-     console.log(request)
+    // console.log(request)
     /* infoWindow.setPosition(pos);
      infoWindow.setContent('Location found.');
      infoWindow.open(map);
      map.setCenter(pos);*/
-   }, function() {
+   /*}, function() {
      handleLocationError(true, infoWindow, map.getCenter());
    });
- }
+ }*/
   var start = document.getElementById('start').value;
   var end = document.getElementById('end').value;
   var request = {
@@ -82,7 +70,7 @@ function calcRoute() {
     destination: end,
     travelMode: 'DRIVING'
   };
-  console.log(pos)
+  //console.log(pos)
   directionsService.route(request, function(result, status) {
     if (status == 'OK') {
       directionsDisplay.setDirections(result);
@@ -178,6 +166,14 @@ function getLat(){
 }*/
 
 $(document).ready(function(){
+  var h = document.getElementById("demo");
+  let home
+  //console.log(getLocation())
+
+  //let zig = getLocation()
+  //console.log(zig)
+  //setTimeout(console.log(home), 2000)
+  //setTimeout(function(){ console.log(home), 2000});
 
   let x = $('<div class="panel-body"></div>')
 
@@ -204,7 +200,23 @@ $(document).ready(function(){
   })
 
   $('#nextClassButton').on('click', function(){
-    calcRoute()
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+            //console.log(navigator.geolocation.getCurrentPosition)
+        } else {
+            h.innerHTML = "Geolocation is not supported by this browser.";
+        }
+    }
+    function showPosition(position) {
+        h.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
+      //  home = position.coords
+      //  return home
+      //console.log(home)
+    //return(position.coords)
+    }
+  //  calcRoute()
     console.log('next class button')
     loopThroughLocal()
     let x = $('<h3>')
